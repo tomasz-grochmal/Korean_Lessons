@@ -31,6 +31,10 @@
             <span aria-hidden="true">▤</span>
             Plan
           </button>
+          <button class="tab-button" type="button" data-view-target="theory">
+            <span aria-hidden="true">i</span>
+            Teoria
+          </button>
           <button class="tab-button" type="button" data-view-target="tests">
             <span aria-hidden="true">✓</span>
             Testy
@@ -88,6 +92,14 @@
             <label><input type="checkbox" data-stage-check="speak"> Mówienie</label>
           </div>
 
+          <section class="theory-tip" aria-labelledby="daily-tip-title">
+            <div class="panel-title">
+              <span class="stage-dot stage-theory"></span>
+              <h3 id="daily-tip-title">Tip teoretyczny</h3>
+            </div>
+            <p id="daily-tip-copy"></p>
+          </section>
+
           <div class="section-head">
             <h3 id="today-cards-title">Dzisiejsze fiszki</h3>
             <p id="today-cards-count"></p>
@@ -135,6 +147,26 @@
             </div>
           </div>
           <div class="plan-list" id="plan-list"></div>
+        </section>
+
+        <section class="view" id="view-theory" aria-labelledby="theory-title">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">praktyczne minimum</p>
+              <h2 id="theory-title">Teoria bez mgły</h2>
+            </div>
+          </div>
+          <div class="theory-intro">
+            <div>
+              <h3>Po co ta zakładka?</h3>
+              <p>Ma dać Ci mapę języka: jak działają sylaby, gdzie jest czasownik, co robi grzeczność i dlaczego koreański brzmi inaczej niż polski.</p>
+            </div>
+            <div>
+              <h3>Jak z niej korzystać?</h3>
+              <p>Przeczytaj raz przed dniem 1, potem wracaj tylko do kawałka, który akurat pojawia się w fiszkach.</p>
+            </div>
+          </div>
+          <div class="theory-list" id="theory-list"></div>
         </section>
 
         <section class="view" id="view-tests" aria-labelledby="tests-title">

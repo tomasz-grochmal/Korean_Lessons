@@ -16,6 +16,8 @@ Otwórz plik `index.html` w przeglądarce. Aplikacja działa bez instalowania za
 
 - 80 praktycznych zwrotów w 4 tygodniach.
 - Stały format fiszek: sytuacja, koreański zapis, uproszczona wymowa, dosłowne znaczenie i naturalne znaczenie po polsku.
+- Zakładka Teoria: tony, hangul, wymowa, budowa zdań, partykuły, grzeczność i typowe pułapki.
+- Codzienny tip teoretyczny przypięty do aktualnego dnia.
 - Testy tygodniowe: produkcja z polskiego na koreański oraz rozpoznawanie koreańskich zdań.
 - 5 mini-dialogów końcowych: kawiarnia, sklep, pytanie o drogę, przedstawianie się i sytuacja "nie rozumiem".
 

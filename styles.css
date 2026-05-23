@@ -261,6 +261,10 @@ main {
   background: var(--coral);
 }
 
+.stage-theory {
+  background: var(--blue);
+}
+
 .progress-checks {
   display: flex;
   flex-wrap: wrap;
@@ -284,6 +288,21 @@ main {
   width: 18px;
   height: 18px;
   accent-color: var(--teal);
+}
+
+.theory-tip {
+  margin-bottom: 26px;
+  padding: 16px 18px;
+  border: 1px solid #cdd9eb;
+  border-left: 6px solid var(--blue);
+  border-radius: 8px;
+  background: #f3f7fc;
+}
+
+.theory-tip p {
+  margin: 0;
+  color: var(--muted);
+  font-weight: 700;
 }
 
 .filters {
@@ -501,6 +520,147 @@ main {
   font-weight: 800;
 }
 
+.theory-intro {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.theory-intro > div {
+  min-height: 130px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.theory-intro h3,
+.theory-intro p {
+  margin: 0;
+}
+
+.theory-intro h3 {
+  margin-bottom: 8px;
+}
+
+.theory-intro p {
+  color: var(--muted);
+}
+
+.theory-list {
+  display: grid;
+  gap: 12px;
+}
+
+.theory-card {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.theory-card summary {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 58px;
+  padding: 14px 16px;
+  background: var(--surface-strong);
+  cursor: pointer;
+}
+
+.theory-card summary::marker {
+  color: var(--blue);
+}
+
+.theory-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 4px 8px;
+  border-radius: 7px;
+  background: #dfe9f7;
+  color: var(--blue);
+  font-size: 0.76rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.theory-body {
+  display: grid;
+  gap: 14px;
+  padding: 16px;
+}
+
+.theory-lead {
+  margin: 0;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.theory-points {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding-left: 20px;
+}
+
+.theory-examples {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 10px;
+}
+
+.theory-example {
+  min-height: 132px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fbfcfe;
+}
+
+.theory-example strong {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 1.35rem;
+}
+
+.theory-example span {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--blue);
+  font-weight: 900;
+}
+
+.theory-example p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.mini-exercise {
+  padding: 14px;
+  border: 1px solid #ead8ae;
+  border-left: 6px solid var(--yellow);
+  border-radius: 8px;
+  background: #fff9eb;
+}
+
+.mini-exercise span {
+  display: block;
+  margin-bottom: 5px;
+  color: #8a6517;
+  font-size: 0.76rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.mini-exercise p {
+  margin: 0;
+}
+
 .segmented {
   display: flex;
   padding: 4px;
@@ -658,6 +818,10 @@ main {
   }
 
   .session-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .theory-intro {
     grid-template-columns: 1fr;
   }
 }

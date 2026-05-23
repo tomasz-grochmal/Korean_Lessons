@@ -1263,6 +1263,156 @@ const DIALOGS = [
   }
 ];
 
+const THEORY_SECTIONS = [
+  {
+    badge: "wymowa",
+    title: "Czy koreański ma tony?",
+    lead: "Standardowy koreański nie ma tonów leksykalnych jak chiński. Nie musisz zapamiętywać, że jedna sylaba zmienia znaczenie przez wysokość głosu.",
+    points: [
+      "Znaczenie zwykle nie zależy od tonu jednej sylaby, tylko od słowa, kontekstu i końcówki zdania.",
+      "Pytania często brzmią wyżej na końcu, a zdania oznajmujące spokojnie opadają.",
+      "Najważniejsze na start: mów równo, nie połykaj końcówek i utrzymuj grzeczny, miękki ton."
+    ],
+    examples: [
+      { front: "안녕하세요.", back: "an-njong-ha-se-jo", note: "Powitanie: głos spokojny, ciepły, bez dużego śpiewania." },
+      { front: "괜찮아요?", back: "kłen-cza-na-jo?", note: "Pytanie: końcówka może lekko pójść w górę." },
+      { front: "좋아요.", back: "dżo-a-jo", note: "Oznajmienie: końcówka może delikatnie opaść." }
+    ],
+    practice: "Powiedz 안녕하세요 trzy razy: neutralnie, jako pytanie i jako ciepłe powitanie. Sens zostaje ten sam, zmienia się nastawienie."
+  },
+  {
+    badge: "hangul",
+    title: "Z czego składają się znaki?",
+    lead: "Hangul nie działa jak chińskie znaki. Jeden blok wygląda jak znak, ale w środku ma litery ułożone w sylabę.",
+    points: [
+      "Podstawowy blok to spółgłoska + samogłoska, np. 가 = ㄱ + ㅏ.",
+      "Często dochodzi spółgłoska końcowa, np. 한 = ㅎ + ㅏ + ㄴ.",
+      "Kształt bloku zmienia się zależnie od samogłoski: pionowa idzie obok spółgłoski, pozioma pod nią."
+    ],
+    examples: [
+      { front: "한", back: "ㅎ + ㅏ + ㄴ", note: "Sylaba han, jak w 한국어." },
+      { front: "국", back: "ㄱ + ㅜ + ㄱ", note: "Sylaba guk, z końcowym k." },
+      { front: "어", back: "ㅇ + ㅓ", note: "ㅇ na początku jest nieme, tylko trzyma miejsce." }
+    ],
+    practice: "Patrz na bloki jak na małe pudełka z literami. Najpierw znajdź pierwszą spółgłoskę, potem samogłoskę, potem ewentualną końcówkę."
+  },
+  {
+    badge: "usta",
+    title: "Wymowa dla Polaka",
+    lead: "Uproszczona wymowa w fiszkach jest pomostem. Koreański ma kilka dźwięków, których nie da się idealnie zapisać polskimi literami.",
+    points: [
+      "ㅓ brzmi między polskim o i a: usta luźne, szczęka lekko niżej niż przy o.",
+      "ㅡ to płaskie y/eu: usta prawie w kreskę, dźwięk krótki i centralny.",
+      "ㄹ jest między r i l: na początku bliżej krótkiego r, na końcu bliżej l."
+    ],
+    examples: [
+      { front: "ㅓ", back: "eo / o-a", note: "Nie rób pełnego polskiego o; zostaw usta luźniejsze." },
+      { front: "ㅡ", back: "eu / y", note: "Nie zaokrąglaj ust. Pomyśl o krótkim, płaskim y." },
+      { front: "ㅇ", back: "zero / ng", note: "Na początku sylaby nieme, na końcu jak ng w angielskim song." },
+      { front: "ㅋ ㅌ ㅍ ㅊ", back: "z przydechem", note: "Po spółgłosce ma wyjść mały podmuch powietrza." },
+      { front: "ㄲ ㄸ ㅃ ㅆ ㅉ", back: "napięte", note: "Bez podmuchu, ale z wyraźnym napięciem gardła i ust." },
+      { front: "받침", back: "końcówka sylaby", note: "Końcowa spółgłoska bywa krótka i zatrzymana, nie dodawaj polskiego y na końcu." }
+    ],
+    practice: "Połóż dłoń przed ustami i porównaj ㅂ z ㅍ. Przy ㅍ powinien być wyraźniejszy podmuch."
+  },
+  {
+    badge: "zdania",
+    title: "Jak buduje się zdania?",
+    lead: "Największa zmiana dla Polaka: czasownik lub orzeczenie zwykle stoi na końcu. Dlatego warto uczyć się całych szablonów.",
+    points: [
+      "Typowy szyk to temat/podmiot + dodatki + czasownik na końcu.",
+      "W prostych prośbach często wystarczy rzecz + 주세요, np. 커피 주세요.",
+      "W koreańskim często pomija się ja i ty, jeśli kontekst jest oczywisty."
+    ],
+    examples: [
+      { front: "저는 토마스예요.", back: "Ja Tomas jestem.", note: "Naturalnie: Jestem Tomas." },
+      { front: "커피 주세요.", back: "Kawę proszę-dać.", note: "Naturalnie: Poproszę kawę." },
+      { front: "화장실 어디예요?", back: "Toaleta gdzie jest?", note: "Naturalnie: Gdzie jest toaleta?" }
+    ],
+    practice: "Przy każdym zdaniu z fiszki zaznacz w głowie końcówkę: 예요, 있어요, 주세요, 해요. To tam dzieje się główna akcja."
+  },
+  {
+    badge: "cząstki",
+    title: "Partykuły: małe końcówki, dużo sensu",
+    lead: "Partykuły to krótkie końcówki doklejane do słów. Pokazują, jaką rolę ma słowo w zdaniu.",
+    points: [
+      "은/는 oznacza temat: o czym teraz mówimy.",
+      "이/가 wskazuje podmiot: co lub kto coś robi albo istnieje.",
+      "을/를 wskazuje obiekt: rzecz, na którą działa czasownik."
+    ],
+    examples: [
+      { front: "저는", back: "jeśli chodzi o mnie", note: "Temat: teraz mówię o sobie." },
+      { front: "이름이", back: "imię jako podmiot", note: "W 이름이 뭐예요? pytamy, czym jest imię." },
+      { front: "커피를", back: "kawę jako obiekt", note: "W 커피를 좋아해요 kawa jest tym, co lubię." },
+      { front: "에 / 에서", back: "do/w / w miejscu akcji", note: "에 często cel lub miejsce, 에서 miejsce działania." }
+    ],
+    practice: "Na start nie analizuj każdej partykuły. Rozpoznawaj je wzrokowo i zapamiętuj z całym zdaniem."
+  },
+  {
+    badge: "grzeczność",
+    title: "Grzeczność i końcówki",
+    lead: "Koreański mocno pilnuje relacji społecznych. Dlatego kurs używa bezpiecznych, grzecznych form, które pasują do większości sytuacji turystycznych.",
+    points: [
+      "-요 jest codzienną grzeczną końcówką: brzmi naturalnie i bezpiecznie.",
+      "-습니다 / -ㅂ니다 jest bardziej formalne: dobre w oficjalnych zwrotach, przeprosinach i pierwszym kontakcie.",
+      "Nie zaczynaj od bardzo koleżeńskich form bez -요, bo łatwo zabrzmieć zbyt ostro."
+    ],
+    examples: [
+      { front: "괜찮아요.", back: "W porządku.", note: "Codziennie grzeczne, miękkie." },
+      { front: "감사합니다.", back: "Dziękuję.", note: "Bardziej formalne i bardzo bezpieczne." },
+      { front: "죄송합니다.", back: "Przepraszam.", note: "Dobre, gdy naprawdę przepraszasz." }
+    ],
+    practice: "Jeśli nie wiesz, jakiej formy użyć, wybierz wersję z 요 albo znany zwrot formalny z fiszek."
+  },
+  {
+    badge: "pułapki",
+    title: "Pułapki, które warto znać od razu",
+    lead: "Te rzeczy najczęściej blokują początkujących. Nie musisz ich perfekcyjnie opanować, wystarczy, że będziesz je rozpoznawać.",
+    points: [
+      "Nie tłumacz słowo w słowo. Koreańskie zdanie często brzmi po polsku dziwnie, zanim zrobisz z niego naturalne znaczenie.",
+      "Nie dopowiadaj zawsze ja/ty. Koreański lubi zostawiać osoby w domyśle.",
+      "Nie dodawaj samogłoski po końcowej spółgłosce. 맛 brzmi krótko, nie jak ma-sy."
+    ],
+    examples: [
+      { front: "주세요", back: "proszę dać", note: "W praktyce często znaczy po prostu: poproszę." },
+      { front: "있어요?", back: "czy jest?", note: "Bardzo przydatny wzór do pytań survivalowych." },
+      { front: "못해요", back: "nie umiem / nie mogę", note: "W 한국어 잘 못해요 znaczy: nie mówię dobrze po koreańsku." }
+    ],
+    practice: "Przy fiszce czytaj najpierw naturalne znaczenie, potem dosłowne. Ta kolejność pomaga mówić, a nie tylko analizować."
+  }
+];
+
+const DAILY_TIPS = {
+  1: "Koreański nie ma tonów jak chiński. W powitaniach ważniejsze są rytm, miękka końcówka i spokojny głos.",
+  2: "Końcówka -합니다 brzmi formalnie i bezpiecznie. Dobre słowo na start, gdy chcesz być uprzejmy.",
+  3: "네 znaczy tak, ale bywa też krótkim sygnałem: słucham, rozumiem, mhm.",
+  4: "실례합니다 jest jak grzeczne wejście do rozmowy. 죄송합니다 to mocniejsze przepraszam za problem.",
+  5: "잘 못해요 to przydatny wzór: nie umiem dobrze. Możesz podmienić 한국어 na inną umiejętność.",
+  6: "W powtórce patrz na końcówki: -요 i -합니다 mówią, że forma jest grzeczna.",
+  7: "Testuj z polskiego na koreański na głos. Chodzi o reakcję, nie o idealny akcent.",
+  8: "주세요 dosłownie znaczy proszę dać. W sklepie działa jak polskie poproszę.",
+  9: "한 잔 to jeden kubek/szklanka. Koreański często używa liczników po liczbach.",
+  10: "안 przed opisem lub czasownikiem robi negację: 안 매운 거 = coś nieostrego.",
+  11: "돼요? znaczy mniej więcej czy da się? Dlatego 카드 돼요? to naturalne czy można kartą?",
+  12: "-도 돼요? to bardzo praktyczny wzór: czy mogę...? Zapamiętaj go jako całość.",
+  13: "Powtórka sklepu i kawiarni: mów rzecz + 주세요, a potem pytanie 얼마예요?",
+  14: "W testach nie bój się dosłownych znaczeń. One są rusztowaniem, naturalne zdanie jest celem.",
+  15: "어디 znaczy gdzie. W koreańskim pytanie może wyglądać jak miejsce + gdzie jest?",
+  16: "-로 pokazuje kierunek: 이 주소로 = pod ten adres / w stronę tego adresu.",
+  17: "지금 to teraz, 오늘 to dziś. Te małe słowa ustawiają czas całego zdania.",
+  18: "있어요? to czy jest? Jeden wzór daje mnóstwo pytań: Wi-Fi, toaleta, menu, rabat.",
+  19: "왼쪽 i 오른쪽 ucz się wzrokowo jako pary: lewo i prawo. Nie rozbieraj ich za długo.",
+  20: "W scenkach survivalowych najpierw powiedz 실례합니다, potem problem, potem prośbę.",
+  21: "Kiedy nie pamiętasz całego zdania, uratuje Cię rdzeń: gdzie, ile, proszę, nie rozumiem.",
+  22: "저는 oznacza jeśli chodzi o mnie. To temat zdania, nie zawsze dosłowne polskie ja.",
+  23: "-고 있어요 oznacza, że coś trwa teraz: 배우고 있어요 = uczę się.",
+  24: "좋아해요 to lubię, a 좋아요 to jest dobre / podoba mi się. Podobne, ale nie identyczne.",
+  25: "싫어요 może znaczyć nie lubię albo nie chcę. Używaj ostrożnie, bo brzmi dość stanowczo.",
+  26: "같이 znaczy razem. 같이 가요 to krótka, naturalna propozycja: chodźmy razem.",
+  27: "Przed finałem ćwicz całymi blokami: powitanie, prośba, reakcja, podziękowanie.",
+  28: "Finał to nie perfekcja. Sukcesem jest umieć spokojnie rozpocząć, poprosić i naprawić rozmowę."
+};
+
 const phraseById = Object.fromEntries(PHRASES.map((phrase) => [phrase.id, phrase]));
 const state = {
   day: Number(localStorage.getItem("ko28-day")) || 1,
@@ -1360,6 +1510,7 @@ function renderToday() {
     ? `${reviewPhrases.length} ostatnich zwrotów wraca do powtórki.`
     : "Pierwszy dzień zaczyna się od czystej karty.";
   qs("#speaking-stage-copy").textContent = day.speak;
+  qs("#daily-tip-copy").textContent = DAILY_TIPS[day.day] || "Wróć do zakładki Teoria i wybierz jedną rzecz, którą zauważysz dziś w fiszkach.";
   qs("#today-cards-title").textContent = title;
   qs("#today-cards-count").textContent = `${visiblePhrases.length} kart`;
   qs("#today-cards").innerHTML = visiblePhrases.length
@@ -1484,6 +1635,37 @@ function renderDialogs() {
   }).join("");
 }
 
+function renderTheory() {
+  qs("#theory-list").innerHTML = THEORY_SECTIONS.map((section, index) => {
+    const points = section.points.map((point) => `<li>${point}</li>`).join("");
+    const examples = section.examples.map((example) => `
+      <div class="theory-example">
+        <strong>${example.front}</strong>
+        <span>${example.back}</span>
+        <p>${example.note}</p>
+      </div>
+    `).join("");
+
+    return `
+      <details class="theory-card" ${index === 0 ? "open" : ""}>
+        <summary>
+          <span class="theory-badge">${section.badge}</span>
+          <strong>${section.title}</strong>
+        </summary>
+        <div class="theory-body">
+          <p class="theory-lead">${section.lead}</p>
+          <ul class="theory-points">${points}</ul>
+          <div class="theory-examples">${examples}</div>
+          <div class="mini-exercise">
+            <span>Mini-ćwiczenie</span>
+            <p>${section.practice}</p>
+          </div>
+        </div>
+      </details>
+    `;
+  }).join("");
+}
+
 function bindEvents() {
   qsa(".tab-button").forEach((button) => {
     button.addEventListener("click", () => setView(button.dataset.viewTarget));
@@ -1560,6 +1742,7 @@ function init() {
   renderPlan();
   renderTests();
   renderDialogs();
+  renderTheory();
   bindEvents();
 }
 
