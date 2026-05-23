@@ -1413,12 +1413,117 @@ const DAILY_TIPS = {
   28: "Finał to nie perfekcja. Sukcesem jest umieć spokojnie rozpocząć, poprosić i naprawić rozmowę."
 };
 
+const HANGUL_LETTERS = [
+  { char: "ㄱ", type: "spółgłoska", sound: "g/k", story: "Zagięty róg garażu: gdy startujesz, brzmi jak g, a na końcu słowa zamyka się jak k.", mouth: "Tył języka dotyka podniebienia i szybko puszcza powietrze.", example: "가 z 안녕히 가세요" },
+  { char: "ㄲ", type: "spółgłoska napięta", sound: "kk", story: "Podwójny róg garażu jest zablokowany dwa razy mocniej, więc dźwięk wychodzi twardo i bez podmuchu.", mouth: "Napnij tył języka, nie wypuszczaj mocnego powietrza.", example: "깐 z 잠깐만요" },
+  { char: "ㄴ", type: "spółgłoska", sound: "n", story: "Kąt nosa: język opiera się jak kreska na dziąsłach, a dźwięk idzie nosem.", mouth: "Czubek języka dotyka miejsca za górnymi zębami.", example: "녕 z 안녕하세요" },
+  { char: "ㄷ", type: "spółgłoska", sound: "d/t", story: "Drzwi domku: otwierają się jak d na początku i zatrzaskują jak t na końcu.", mouth: "Język dotyka dziąseł, krótki start bez mocnego podmuchu.", example: "도 z 도와주세요" },
+  { char: "ㄸ", type: "spółgłoska napięta", sound: "tt", story: "Dwoje drzwi jest zaryglowanych, więc wypychasz dźwięk mocno, ale bez wybuchu powietrza.", mouth: "Napnij czubek języka przy dziąsłach.", example: "또 z 다음에 또 만나요" },
+  { char: "ㄹ", type: "spółgłoska", sound: "r/l", story: "Kręta rzeka: na początku mruga jak krótkie r, a na końcu kładzie się jak l.", mouth: "Muśnij dziąsła czubkiem języka, nie rób długiego polskiego r.", example: "를 z 한국어를 배우고 있어요" },
+  { char: "ㅁ", type: "spółgłoska", sound: "m", story: "Małe mieszkanie z zamkniętymi drzwiami: usta się zamykają i dźwięk idzie przez nos.", mouth: "Zamknij usta lekko, bez napinania szczęki.", example: "만 z 만나서 반갑습니다" },
+  { char: "ㅂ", type: "spółgłoska", sound: "b/p", story: "Pudełko z bokami: usta zamykają pudełko, potem je otwierają.", mouth: "Złącz wargi i puść krótko, bez silnego podmuchu.", example: "반 z 반갑습니다" },
+  { char: "ㅅ", type: "spółgłoska", sound: "s", story: "Dwie ścieżki schodzą się w syk wiatru.", mouth: "Zęby blisko siebie, lekki syk, bez polskiego sz.", example: "세 z 안녕하세요" },
+  { char: "ㅆ", type: "spółgłoska napięta", sound: "ss", story: "Podwójna ścieżka syczy mocniej, jak dwa cienkie strumienie powietrza.", mouth: "Napnij syk, ale nie dodawaj przydechu.", example: "있 z 있어요" },
+  { char: "ㅇ", type: "spółgłoska", sound: "nieme/ng", story: "Puste kółko jest haczykiem na samogłoskę: na początku milczy, na końcu dzwoni jak ng.", mouth: "Na początku nie wymawiaj; na końcu zamknij dźwięk w nosie.", example: "안 z 안녕하세요" },
+  { char: "ㅈ", type: "spółgłoska", sound: "dż/cz", story: "Mały daszek z iskrami: startuje jak miękkie dż, czasem brzmi bliżej cz.", mouth: "Język blisko podniebienia, usta lekko zaokrąglone.", example: "주 z 주세요" },
+  { char: "ㅉ", type: "spółgłoska napięta", sound: "jj", story: "Podwójny daszek ściska iskrę, więc dźwięk wyskakuje krótko i twardo.", mouth: "Napnij środek języka, wypuść bez podmuchu.", example: "찍 z 사진 찍어도 돼요" },
+  { char: "ㅊ", type: "spółgłoska z przydechem", sound: "czh", story: "Daszek z antenką wypuszcza powietrze jak mały wystrzał.", mouth: "Powiedz cz z wyraźnym podmuchem na dłoni.", example: "천 z 천천히 말해 주세요" },
+  { char: "ㅋ", type: "spółgłoska z przydechem", sound: "kh", story: "Róg garażu dostał komin, więc po k wychodzi obłoczek powietrza.", mouth: "Tył języka jak przy k, ale z mocniejszym podmuchem.", example: "커 z 커피 한 잔 주세요" },
+  { char: "ㅌ", type: "spółgłoska z przydechem", sound: "th", story: "Drzwi z dachem trzaskają tak, że czujesz powietrze na dłoni.", mouth: "Czubek języka przy dziąsłach, wypuść wyraźny podmuch.", example: "택 z 택시 불러 주세요" },
+  { char: "ㅍ", type: "spółgłoska z przydechem", sound: "ph", story: "Pudełko z daszkiem pęka i wypuszcza puff powietrza.", mouth: "Złącz wargi i wypuść mocniejszy podmuch niż przy ㅂ.", example: "피 z 커피 한 잔 주세요" },
+  { char: "ㅎ", type: "spółgłoska", sound: "h", story: "Mały człowiek w kapeluszu robi ciche ha.", mouth: "Gardło otwarte, lekki oddech, bez szorstkiego charczenia.", example: "하 z 안녕하세요" },
+  { char: "ㅏ", type: "samogłoska", sound: "a", story: "Pionowa ściana i kreska w prawo: otwierasz okno na jasne a.", mouth: "Otwórz usta naturalnie jak przy polskim a.", example: "가, 하, 만" },
+  { char: "ㅐ", type: "samogłoska", sound: "e/ae", story: "Dwa okna obok siebie wpuszczają jaśniejsze e.", mouth: "Usta szerzej niż przy i, dźwięk blisko polskiego e.", example: "매 z 매운 음식" },
+  { char: "ㅓ", type: "samogłoska", sound: "o-a", story: "Kreska patrzy w lewo, jakby głos cofał się głębiej niż zwykłe a.", mouth: "Usta luźne, nie rób pełnego polskiego o.", example: "어 z 한국어" },
+  { char: "ㅔ", type: "samogłoska", sound: "e", story: "Dwie kreski przy ścianie robią wąskie, czyste e.", mouth: "Usta lekko rozciągnięte, krótko.", example: "세 z 안녕하세요" },
+  { char: "ㅕ", type: "samogłoska", sound: "jo", story: "Dwie kreski w lewo to dwa małe kroki do dźwięku jo.", mouth: "Zacznij od krótkiego j, potem luźne ㅓ.", example: "녕 z 안녕하세요" },
+  { char: "ㅖ", type: "samogłoska", sound: "je", story: "Podwójne e z małym rozbiegiem: najpierw j, potem e.", mouth: "Krótki start j i jasne e.", example: "예 z 얼마예요" },
+  { char: "ㅗ", type: "samogłoska", sound: "o", story: "Kreska idzie w górę jak filiżanka podnoszona do ust: okrągłe o.", mouth: "Zaokrąglij usta, krótko.", example: "고 z 고맙습니다" },
+  { char: "ㅘ", type: "samogłoska złożona", sound: "ła/wa", story: "ㅗ spotyka ㅏ: filiżanka robi szerokie wa.", mouth: "Zacznij od zaokrąglenia ust i szybko otwórz do a.", example: "와 z 도와주세요" },
+  { char: "ㅙ", type: "samogłoska złożona", sound: "łe/we", story: "Okrągłe o wpada w jasne e, jak szybkie pytanie we?", mouth: "Krótko zaokrąglij usta, potem przejdź do e.", example: "돼 z 카드 돼요" },
+  { char: "ㅚ", type: "samogłoska złożona", sound: "łe/we", story: "ㅗ trzyma pionową ścianę i robi zwarte we.", mouth: "Usta lekko okrągłe, dźwięk blisko we.", example: "죄 z 죄송합니다" },
+  { char: "ㅛ", type: "samogłoska", sound: "jo", story: "Dwie kreski nad podłogą skaczą jak dwa małe jo-jo.", mouth: "Krótki start j i okrągłe o.", example: "요 z 안녕하세요" },
+  { char: "ㅜ", type: "samogłoska", sound: "u", story: "Kreska spada w dół jak wiadro do studni: głębokie u.", mouth: "Zaokrąglij usta jak przy polskim u.", example: "주 z 주세요" },
+  { char: "ㅝ", type: "samogłoska złożona", sound: "ło/wo", story: "ㅜ wjeżdża w ㅓ: z głębokiego u przechodzisz do luźnego o-a.", mouth: "Zaokrąglij usta i szybko rozluźnij.", example: "뭐 z 뭐예요" },
+  { char: "ㅠ", type: "samogłoska", sound: "ju", story: "Dwie kreski pod linią wyglądają jak łzy: ju, jak smutne juuu.", mouth: "Krótki start j i okrągłe u.", example: "뉴 z 메뉴 주세요" },
+  { char: "ㅡ", type: "samogłoska", sound: "eu/y", story: "Płaska kreska to usta w poziomą linię: dźwięk jest płaski i centralny.", mouth: "Nie zaokrąglaj ust, powiedz krótkie płaskie y/eu.", example: "은 z 저는" },
+  { char: "ㅣ", type: "samogłoska", sound: "i", story: "Pionowa igła: cienkie, proste i.", mouth: "Usta lekko rozciągnięte, krótko.", example: "시 z 택시" },
+  { char: "ㄶ", type: "końcówka złożona", sound: "n", story: "ㄴ niesie ciche ㅎ w plecaku: widzisz dwa znaki, ale końcówka brzmi głównie jak n.", mouth: "Zamknij język na n, nie dodawaj osobnego ha.", example: "찮 z 괜찮아요" },
+  { char: "ㅀ", type: "końcówka złożona", sound: "l", story: "ㄹ ma cichy kapelusz ㅎ: rzeka kończy się jak l, bez osobnego h.", mouth: "Połóż język lekko jak przy l i zatrzymaj.", example: "잃 z 길을 잃었어요" },
+  { char: "ㅄ", type: "końcówka złożona", sound: "p", story: "Pudełko ㅂ trzyma w środku syk ㅅ, ale na końcu słychać głównie p.", mouth: "Zamknij usta krótko, nie dopowiadaj sy.", example: "없 z 문제없어요" }
+];
+
+const HANGUL_LESSONS = [
+  {
+    id: "hangul-1",
+    order: 1,
+    title: "Start hangulu 1/3: pudełka sylab",
+    letters: ["ㅇ", "ㅏ", "ㅓ", "ㅗ", "ㅜ", "ㅡ", "ㅣ", "ㄱ", "ㄴ", "ㄷ", "ㄹ", "ㅁ", "ㅂ", "ㅅ", "ㅎ"],
+    goal: "Zobaczyć, że 한 to nie obrazek, tylko ㅎ + ㅏ + ㄴ.",
+    newCopy: "Poznaj rolę ㅇ, podstawowe samogłoski i pierwsze spółgłoski z kursu.",
+    reviewCopy: "Ćwicz rozpoznawanie kierunku kresek: pionowe samogłoski stoją obok spółgłoski, poziome idą pod nią.",
+    speak: "Przeczytaj powoli: 안, 한, 하, 가, 나. Nie walcz jeszcze o perfekcyjny akcent.",
+    tip: "Na starcie patrz na hangul jak na klocki. Najpierw znajdź pierwszą spółgłoskę, potem samogłoskę, potem końcówkę.",
+    practice: ["안 = ㅇ + ㅏ + ㄴ", "한 = ㅎ + ㅏ + ㄴ", "가 = ㄱ + ㅏ"]
+  },
+  {
+    id: "hangul-2",
+    order: 2,
+    title: "Start hangulu 2/3: samogłoski i końcówki",
+    letters: ["ㅐ", "ㅔ", "ㅕ", "ㅖ", "ㅛ", "ㅠ", "ㅘ", "ㅙ", "ㅚ", "ㅝ"],
+    goal: "Rozpoznawać samogłoski, które najczęściej pojawiają się w Twoich fiszkach.",
+    newCopy: "Dodaj dźwięki e, jo, ju oraz złożenia typu wa/we/wo.",
+    reviewCopy: "Powtórz zasadę: końcowa spółgłoska siedzi na dole sylaby i bywa krótka.",
+    speak: "Przeczytaj powoli: 세, 요, 예, 와, 돼, 뭐.",
+    tip: "Złożone samogłoski traktuj jak szybki ślizg ust: ㅘ zaczyna się okrągło i otwiera do a.",
+    practice: ["세 = ㅅ + ㅔ", "요 = ㅇ + ㅛ", "돼 = ㄷ + ㅙ"]
+  },
+  {
+    id: "hangul-3",
+    order: 3,
+    title: "Start hangulu 3/3: przydech i napięcie",
+    letters: ["ㅈ", "ㅊ", "ㅋ", "ㅌ", "ㅍ", "ㄲ", "ㄸ", "ㅆ", "ㅉ", "ㄶ", "ㅀ", "ㅄ"],
+    goal: "Odróżniać zwykłe, przydechowe i napięte spółgłoski.",
+    newCopy: "Poznaj litery z podmuchem, litery napięte i trudniejsze końcówki z fiszek.",
+    reviewCopy: "Porównuj pary: ㄱ/ㅋ/ㄲ, ㄷ/ㅌ/ㄸ, ㅈ/ㅊ/ㅉ.",
+    speak: "Połóż dłoń przed ustami i porównaj 커, 터, 피 z krótszymi dźwiękami bez podmuchu.",
+    tip: "Przydech to powietrze na dłoni. Napięcie to mocny start bez dużego podmuchu.",
+    practice: ["커 = ㅋ + ㅓ", "택 = ㅌ + ㅐ + ㄱ", "없 = ㅇ + ㅓ + ㅄ"]
+  }
+];
+
+const COURSE_STEPS = [
+  ...HANGUL_LESSONS.map((lesson, index) => ({
+    type: "hangul",
+    step: index + 1,
+    lessonId: lesson.id,
+    title: lesson.title
+  })),
+  ...DAYS.map((day) => ({
+    type: "phrases",
+    step: day.day + HANGUL_LESSONS.length,
+    day: day.day,
+    week: day.week,
+    title: day.title,
+    ids: day.ids,
+    speak: day.speak
+  }))
+];
+
 const phraseById = Object.fromEntries(PHRASES.map((phrase) => [phrase.id, phrase]));
+const hangulLetterByChar = Object.fromEntries(HANGUL_LETTERS.map((letter) => [letter.char, letter]));
+const savedStep = Number(localStorage.getItem("ko28-step"));
+const savedDay = Number(localStorage.getItem("ko28-day"));
+const initialStep = savedStep || (savedDay ? savedDay + HANGUL_LESSONS.length : 1);
 const state = {
-  day: Number(localStorage.getItem("ko28-day")) || 1,
+  step: Math.min(COURSE_STEPS.length, Math.max(1, initialStep)),
   testMode: "production",
   testWeek: 1
 };
+
+if (!savedStep && savedDay) {
+  localStorage.setItem("ko28-step", String(state.step));
+}
 
 const progress = JSON.parse(localStorage.getItem("ko28-progress") || "{}");
 
@@ -1434,12 +1539,20 @@ function saveProgress() {
   localStorage.setItem("ko28-progress", JSON.stringify(progress));
 }
 
-function saveDay() {
-  localStorage.setItem("ko28-day", String(state.day));
+function saveStep() {
+  localStorage.setItem("ko28-step", String(state.step));
+  const step = getCurrentStep();
+  if (step.type === "phrases") {
+    localStorage.setItem("ko28-day", String(step.day));
+  }
 }
 
-function clampDay(day) {
-  return Math.min(28, Math.max(1, day));
+function clampStep(step) {
+  return Math.min(COURSE_STEPS.length, Math.max(1, step));
+}
+
+function getCurrentStep() {
+  return COURSE_STEPS[state.step - 1] || COURSE_STEPS[0];
 }
 
 function shuffle(items) {
@@ -1460,6 +1573,66 @@ function getReviewPhrases(dayNumber) {
   return previous.slice(Math.max(0, previous.length - 12));
 }
 
+const CHOSEONG = ["ㄱ", "ㄲ", "ㄴ", "ㄷ", "ㄸ", "ㄹ", "ㅁ", "ㅂ", "ㅃ", "ㅅ", "ㅆ", "ㅇ", "ㅈ", "ㅉ", "ㅊ", "ㅋ", "ㅌ", "ㅍ", "ㅎ"];
+const JUNGSEONG = ["ㅏ", "ㅐ", "ㅑ", "ㅒ", "ㅓ", "ㅔ", "ㅕ", "ㅖ", "ㅗ", "ㅘ", "ㅙ", "ㅚ", "ㅛ", "ㅜ", "ㅝ", "ㅞ", "ㅟ", "ㅠ", "ㅡ", "ㅢ", "ㅣ"];
+const JONGSEONG = ["", "ㄱ", "ㄲ", "ㄳ", "ㄴ", "ㄵ", "ㄶ", "ㄷ", "ㄹ", "ㄺ", "ㄻ", "ㄼ", "ㄽ", "ㄾ", "ㄿ", "ㅀ", "ㅁ", "ㅂ", "ㅄ", "ㅅ", "ㅆ", "ㅇ", "ㅈ", "ㅊ", "ㅋ", "ㅌ", "ㅍ", "ㅎ"];
+
+function decomposeHangulSyllable(char) {
+  const code = char.codePointAt(0) - 0xac00;
+  if (code < 0 || code >= 11172) return null;
+
+  const initial = CHOSEONG[Math.floor(code / 588)];
+  const vowel = JUNGSEONG[Math.floor((code % 588) / 28)];
+  const final = JONGSEONG[code % 28];
+  return {
+    char,
+    initial,
+    vowel,
+    final,
+    parts: final ? [initial, vowel, final] : [initial, vowel]
+  };
+}
+
+function getHangulSound(part, role) {
+  if (part === "ㅇ" && role === "initial") return "nieme";
+  if (part === "ㅇ" && role === "final") return "ng";
+  return hangulLetterByChar[part]?.sound || "?";
+}
+
+function getPhraseSyllableBreakdown(text) {
+  return [...text]
+    .map((char) => decomposeHangulSyllable(char))
+    .filter(Boolean);
+}
+
+function renderSyllableBreakdown(phrase) {
+  const rows = getPhraseSyllableBreakdown(phrase.korean).map((syllable) => {
+    const parts = [
+      { char: syllable.initial, role: "initial" },
+      { char: syllable.vowel, role: "vowel" },
+      ...(syllable.final ? [{ char: syllable.final, role: "final" }] : [])
+    ];
+    const partsHtml = parts
+      .map((part) => `<span>${part.char}<small>${getHangulSound(part.char, part.role)}</small></span>`)
+      .join("");
+
+    return `
+      <div class="syllable-row">
+        <strong>${syllable.char}</strong>
+        <div>${partsHtml}</div>
+      </div>
+    `;
+  }).join("");
+
+  return `
+    <details class="syllable-breakdown">
+      <summary>Rozbij sylaby</summary>
+      <div class="syllable-list">${rows}</div>
+      <p>Zapis literowy pomaga czytać. Realna wymowa czasem się łączy, np. końcówki mogą brzmieć krócej.</p>
+    </details>
+  `;
+}
+
 function phraseCard(phrase, compact = false) {
   const scene = SCENES[phrase.scene];
   const memory = chunkHangul(phrase.korean)
@@ -1478,6 +1651,7 @@ function phraseCard(phrase, compact = false) {
       <p class="pronunciation">${phrase.pronunciation}</p>
       <p class="natural"><span>Naturalnie</span><strong>${phrase.polish}</strong></p>
       <p class="literal"><span>Dosłownie</span><br>${phrase.literal}</p>
+      ${renderSyllableBreakdown(phrase)}
       <p class="pattern"><span>Schemat</span><br>${phrase.pattern}</p>
     </article>
   `;
@@ -1492,8 +1666,65 @@ function setView(viewName) {
   });
 }
 
+function renderHangulLetterChip(char) {
+  const letter = hangulLetterByChar[char];
+  if (!letter) return "";
+  return `
+    <div class="hangul-chip">
+      <strong>${letter.char}</strong>
+      <span>${letter.sound}</span>
+    </div>
+  `;
+}
+
+function renderHangulLessonToday(lesson) {
+  const practice = lesson.practice.map((item) => `<li>${item}</li>`).join("");
+  const letters = lesson.letters.map(renderHangulLetterChip).join("");
+
+  return `
+    <div class="hangul-today">
+      <article class="hangul-panel">
+        <p class="eyebrow">Cel</p>
+        <h3>${lesson.goal}</h3>
+        <p>${lesson.tip}</p>
+      </article>
+      <article class="hangul-panel">
+        <p class="eyebrow">Litery dzisiaj</p>
+        <div class="hangul-chip-grid">${letters}</div>
+      </article>
+      <article class="hangul-panel">
+        <p class="eyebrow">Czytanie</p>
+        <ul>${practice}</ul>
+      </article>
+    </div>
+  `;
+}
+
 function renderToday() {
-  const day = DAYS[state.day - 1];
+  const step = getCurrentStep();
+
+  if (step.type === "hangul") {
+    const lesson = HANGUL_LESSONS.find((item) => item.id === step.lessonId);
+    qs("#today-week").textContent = "Start hangulu";
+    qs("#today-title").textContent = lesson.title;
+    qs("#day-output").textContent = `Start ${lesson.order}/3`;
+    qs("#day-range").value = step.step;
+    qs("#new-stage-copy").textContent = lesson.newCopy;
+    qs("#review-stage-copy").textContent = lesson.reviewCopy;
+    qs("#speaking-stage-copy").textContent = lesson.speak;
+    qs("#daily-tip-copy").textContent = lesson.tip;
+    qs("#today-cards-title").textContent = "Dzisiejszy hangul";
+    qs("#today-cards-count").textContent = `${lesson.letters.length} liter`;
+    qs("#today-cards").innerHTML = renderHangulLessonToday(lesson);
+
+    qsa("[data-stage-check]").forEach((input) => {
+      const key = `s${step.step}-${input.dataset.stageCheck}`;
+      input.checked = Boolean(progress[key]);
+    });
+    return;
+  }
+
+  const day = DAYS[step.day - 1];
   const newPhrases = day.ids.map((id) => phraseById[id]);
   const reviewPhrases = getReviewPhrases(day.day);
   const visiblePhrases = newPhrases.length ? newPhrases : reviewPhrases;
@@ -1502,7 +1733,7 @@ function renderToday() {
   qs("#today-week").textContent = `Tydzień ${day.week}`;
   qs("#today-title").textContent = day.title;
   qs("#day-output").textContent = `Dzień ${day.day}`;
-  qs("#day-range").value = day.day;
+  qs("#day-range").value = step.step;
   qs("#new-stage-copy").textContent = newPhrases.length
     ? `${newPhrases.length} nowe zwroty: ${newPhrases.map((phrase) => phrase.polish).join(" · ")}`
     : "Bez nowych zwrotów. Ten dzień wzmacnia pamięć i tempo reakcji.";
@@ -1518,7 +1749,7 @@ function renderToday() {
     : `<div class="empty-state">Dziś głównym materiałem są testy i dialogi.</div>`;
 
   qsa("[data-stage-check]").forEach((input) => {
-    const key = `d${day.day}-${input.dataset.stageCheck}`;
+    const key = `s${step.step}-${input.dataset.stageCheck}`;
     input.checked = Boolean(progress[key]);
   });
 }
@@ -1550,12 +1781,28 @@ function renderCards() {
 }
 
 function renderPlan() {
-  qs("#plan-list").innerHTML = DAYS.map((day) => {
+  qs("#plan-list").innerHTML = COURSE_STEPS.map((step) => {
+    if (step.type === "hangul") {
+      const lesson = HANGUL_LESSONS.find((item) => item.id === step.lessonId);
+      return `
+        <article class="plan-day ${step.step === state.step ? "is-current" : ""}">
+          <div class="day-badge">H${lesson.order}</div>
+          <div>
+            <p class="eyebrow">Start hangulu ${lesson.order}/3</p>
+            <h3>${lesson.title.replace(/^Start hangulu \d\/3: /, "")}</h3>
+            <p class="day-meta">${lesson.goal}</p>
+          </div>
+          <div class="day-count">${lesson.letters.length} liter</div>
+        </article>
+      `;
+    }
+
+    const day = DAYS[step.day - 1];
     const newCount = day.ids.length;
     const reviewCount = getReviewPhrases(day.day).length;
     const label = newCount ? `${newCount} nowe · ${reviewCount} powt.` : `${reviewCount} powt. · scenka`;
     return `
-      <article class="plan-day ${day.day === state.day ? "is-current" : ""}">
+      <article class="plan-day ${step.step === state.step ? "is-current" : ""}">
         <div class="day-badge">D${day.day}</div>
         <div>
           <p class="eyebrow">Tydzień ${day.week}</p>
@@ -1666,35 +1913,72 @@ function renderTheory() {
   }).join("");
 }
 
+function renderHangul() {
+  qs("#hangul-lessons").innerHTML = HANGUL_LESSONS.map((lesson) => {
+    const practice = lesson.practice.map((item) => `<li>${item}</li>`).join("");
+    const letters = lesson.letters.map(renderHangulLetterChip).join("");
+
+    return `
+      <article class="hangul-lesson">
+        <div>
+          <p class="eyebrow">Start ${lesson.order}/3</p>
+          <h3>${lesson.title.replace(/^Start hangulu \d\/3: /, "")}</h3>
+          <p>${lesson.goal}</p>
+        </div>
+        <div class="hangul-chip-grid">${letters}</div>
+        <div class="hangul-practice">
+          <span>Ćwiczenie czytania</span>
+          <ul>${practice}</ul>
+        </div>
+      </article>
+    `;
+  }).join("");
+
+  qs("#hangul-letters").innerHTML = HANGUL_LETTERS.map((letter) => `
+    <article class="hangul-letter-card">
+      <div class="letter-head">
+        <strong>${letter.char}</strong>
+        <div>
+          <span>${letter.type}</span>
+          <b>${letter.sound}</b>
+        </div>
+      </div>
+      <p><span>Historia</span>${letter.story}</p>
+      <p><span>Usta</span>${letter.mouth}</p>
+      <p><span>Przykład</span>${letter.example}</p>
+    </article>
+  `).join("");
+}
+
 function bindEvents() {
   qsa(".tab-button").forEach((button) => {
     button.addEventListener("click", () => setView(button.dataset.viewTarget));
   });
 
   qs("#prev-day").addEventListener("click", () => {
-    state.day = clampDay(state.day - 1);
-    saveDay();
+    state.step = clampStep(state.step - 1);
+    saveStep();
     renderToday();
     renderPlan();
   });
 
   qs("#next-day").addEventListener("click", () => {
-    state.day = clampDay(state.day + 1);
-    saveDay();
+    state.step = clampStep(state.step + 1);
+    saveStep();
     renderToday();
     renderPlan();
   });
 
   qs("#day-range").addEventListener("input", (event) => {
-    state.day = clampDay(Number(event.target.value));
-    saveDay();
+    state.step = clampStep(Number(event.target.value));
+    saveStep();
     renderToday();
     renderPlan();
   });
 
   qsa("[data-stage-check]").forEach((input) => {
     input.addEventListener("change", () => {
-      const key = `d${state.day}-${input.dataset.stageCheck}`;
+      const key = `s${state.step}-${input.dataset.stageCheck}`;
       progress[key] = input.checked;
       saveProgress();
     });
@@ -1743,6 +2027,7 @@ function init() {
   renderTests();
   renderDialogs();
   renderTheory();
+  renderHangul();
   bindEvents();
 }
 

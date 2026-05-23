@@ -1,6 +1,6 @@
 # Koreański 28 dni
 
-Lokalny zestaw do szybkiej nauki podstaw koreańskiego: wizualne fiszki, plan 15 minut dziennie, testy tygodniowe i mini-dialogi.
+Lokalny zestaw do szybkiej nauki podstaw koreańskiego: start hangulu, wizualne fiszki, plan 15 minut dziennie, testy tygodniowe i mini-dialogi.
 
 ## Jak uruchomić
 
@@ -8,14 +8,17 @@ Otwórz plik `index.html` w przeglądarce. Aplikacja działa bez instalowania za
 
 ## Codzienny rytm
 
-1. 5 minut: nowe zwroty z aktualnego dnia.
+1. 5 minut: hangul albo nowe zwroty z aktualnego dnia.
 2. 5 minut: powtórka wcześniejszych zwrotów.
 3. 5 minut: mówienie na głos z mini-scenki.
 
 ## Zawartość
 
+- 3-dniowy start hangulu przed fiszkami.
+- Zakładka Hangul: litery, historie pamięciowe, wskazówki wymowy i ćwiczenia czytania.
 - 80 praktycznych zwrotów w 4 tygodniach.
 - Stały format fiszek: sytuacja, koreański zapis, uproszczona wymowa, dosłowne znaczenie i naturalne znaczenie po polsku.
+- Rozwijane rozbicie sylab na fiszkach, np. `한 = ㅎ + ㅏ + ㄴ`.
 - Zakładka Teoria: tony, hangul, wymowa, budowa zdań, partykuły, grzeczność i typowe pułapki.
 - Codzienny tip teoretyczny przypięty do aktualnego dnia.
 - Testy tygodniowe: produkcja z polskiego na koreański oraz rozpoznawanie koreańskich zdań.

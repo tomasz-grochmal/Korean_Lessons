@@ -31,6 +31,10 @@
             <span aria-hidden="true">▤</span>
             Plan
           </button>
+          <button class="tab-button" type="button" data-view-target="hangul">
+            <span aria-hidden="true">한</span>
+            Hangul
+          </button>
           <button class="tab-button" type="button" data-view-target="theory">
             <span aria-hidden="true">i</span>
             Teoria
@@ -60,7 +64,7 @@
             </div>
           </div>
 
-          <input class="day-range" id="day-range" type="range" min="1" max="28" value="1" aria-label="Dzień planu">
+          <input class="day-range" id="day-range" type="range" min="1" max="31" value="1" aria-label="Krok kursu">
 
           <div class="session-grid">
             <section class="session-panel" aria-labelledby="new-stage-title">
@@ -142,11 +146,38 @@
         <section class="view" id="view-plan" aria-labelledby="plan-title">
           <div class="section-head">
             <div>
-              <p class="eyebrow">28 dni</p>
+              <p class="eyebrow">3 starty + 28 dni</p>
               <h2 id="plan-title">Plan nauki</h2>
             </div>
           </div>
           <div class="plan-list" id="plan-list"></div>
+        </section>
+
+        <section class="view" id="view-hangul" aria-labelledby="hangul-title">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">alfabet w praktyce</p>
+              <h2 id="hangul-title">Hangul krok po kroku</h2>
+            </div>
+          </div>
+          <div class="hangul-intro">
+            <div>
+              <h3>Najpierw bloki</h3>
+              <p>Każdy koreański znak to zwykle małe pudełko z literami: pierwsza spółgłoska, samogłoska i czasem końcówka.</p>
+            </div>
+            <div>
+              <h3>Potem skojarzenia</h3>
+              <p>Litery uczysz się przez krótkie historie obrazkowe, ruch ust i przykłady z fiszek, które zaraz zobaczysz w kursie.</p>
+            </div>
+          </div>
+          <div class="hangul-lessons" id="hangul-lessons"></div>
+          <div class="section-head compact-head">
+            <div>
+              <p class="eyebrow">litery z kursu</p>
+              <h3>Mapa pamięciowa</h3>
+            </div>
+          </div>
+          <div class="hangul-letter-grid" id="hangul-letters"></div>
         </section>
 
         <section class="view" id="view-theory" aria-labelledby="theory-title">
