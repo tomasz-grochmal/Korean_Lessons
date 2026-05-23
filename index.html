@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Koreański 28 dni</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">한</div>
+          <div>
+            <h1>Koreański 28 dni</h1>
+            <p>15 minut dziennie · wizualne fiszki · gotowe zdania</p>
+          </div>
+        </div>
+
+        <nav class="tabs" aria-label="Widoki aplikacji">
+          <button class="tab-button is-active" type="button" data-view-target="today">
+            <span aria-hidden="true">◉</span>
+            Dzisiaj
+          </button>
+          <button class="tab-button" type="button" data-view-target="cards">
+            <span aria-hidden="true">▦</span>
+            Fiszki
+          </button>
+          <button class="tab-button" type="button" data-view-target="plan">
+            <span aria-hidden="true">▤</span>
+            Plan
+          </button>
+          <button class="tab-button" type="button" data-view-target="tests">
+            <span aria-hidden="true">✓</span>
+            Testy
+          </button>
+          <button class="tab-button" type="button" data-view-target="dialogs">
+            <span aria-hidden="true">〞</span>
+            Dialogi
+          </button>
+        </nav>
+      </header>
+
+      <main>
+        <section class="view is-active" id="view-today" aria-labelledby="today-title">
+          <div class="session-head">
+            <div>
+              <p class="eyebrow" id="today-week"></p>
+              <h2 id="today-title"></h2>
+            </div>
+            <div class="day-control" aria-label="Wybór dnia">
+              <button class="icon-button" type="button" id="prev-day" aria-label="Poprzedni dzień">‹</button>
+              <output id="day-output"></output>
+              <button class="icon-button" type="button" id="next-day" aria-label="Następny dzień">›</button>
+            </div>
+          </div>
+
+          <input class="day-range" id="day-range" type="range" min="1" max="28" value="1" aria-label="Dzień planu">
+
+          <div class="session-grid">
+            <section class="session-panel" aria-labelledby="new-stage-title">
+              <div class="panel-title">
+                <span class="stage-dot stage-new"></span>
+                <h3 id="new-stage-title">5 min nowe</h3>
+              </div>
+              <p id="new-stage-copy"></p>
+            </section>
+            <section class="session-panel" aria-labelledby="review-stage-title">
+              <div class="panel-title">
+                <span class="stage-dot stage-review"></span>
+                <h3 id="review-stage-title">5 min powtórka</h3>
+              </div>
+              <p id="review-stage-copy"></p>
+            </section>
+            <section class="session-panel" aria-labelledby="speaking-stage-title">
+              <div class="panel-title">
+                <span class="stage-dot stage-speak"></span>
+                <h3 id="speaking-stage-title">5 min mówienie</h3>
+              </div>
+              <p id="speaking-stage-copy"></p>
+            </section>
+          </div>
+
+          <div class="progress-checks" aria-label="Postęp dnia">
+            <label><input type="checkbox" data-stage-check="new"> Nowe</label>
+            <label><input type="checkbox" data-stage-check="review"> Powtórka</label>
+            <label><input type="checkbox" data-stage-check="speak"> Mówienie</label>
+          </div>
+
+          <div class="section-head">
+            <h3 id="today-cards-title">Dzisiejsze fiszki</h3>
+            <p id="today-cards-count"></p>
+          </div>
+          <div class="cards-grid" id="today-cards"></div>
+        </section>
+
+        <section class="view" id="view-cards" aria-labelledby="cards-title">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">80 zwrotów</p>
+              <h2 id="cards-title">Fiszki wizualne</h2>
+            </div>
+            <div class="filters">
+              <label>
+                Tydzień
+                <select id="week-filter">
+                  <option value="all">Wszystkie</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                </select>
+              </label>
+              <label>
+                Scena
+                <select id="scene-filter">
+                  <option value="all">Wszystkie</option>
+                </select>
+              </label>
+              <label>
+                Szukaj
+                <input id="card-search" type="search" placeholder="np. kawa, gdzie, dziękuję">
+              </label>
+            </div>
+          </div>
+          <div class="cards-grid" id="cards-list"></div>
+        </section>
+
+        <section class="view" id="view-plan" aria-labelledby="plan-title">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">28 dni</p>
+              <h2 id="plan-title">Plan nauki</h2>
+            </div>
+          </div>
+          <div class="plan-list" id="plan-list"></div>
+        </section>
+
+        <section class="view" id="view-tests" aria-labelledby="tests-title">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">co 7 dni</p>
+              <h2 id="tests-title">Testy tygodniowe</h2>
+            </div>
+            <div class="filters compact">
+              <label>
+                Tydzień
+                <select id="test-week">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                </select>
+              </label>
+              <div class="segmented" role="group" aria-label="Tryb testu">
+                <button class="segment is-active" type="button" data-test-mode="production">PL → KO</button>
+                <button class="segment" type="button" data-test-mode="recognition">KO → PL</button>
+              </div>
+              <button class="tool-button" type="button" id="shuffle-test">
+                <span aria-hidden="true">↻</span>
+                Mieszaj
+              </button>
+            </div>
+          </div>
+          <div class="test-list" id="test-list"></div>
+        </section>
+
+        <section class="view" id="view-dialogs" aria-labelledby="dialogs-title">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">finał</p>
+              <h2 id="dialogs-title">Mini-dialogi</h2>
+            </div>
+          </div>
+          <div class="dialog-list" id="dialog-list"></div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
