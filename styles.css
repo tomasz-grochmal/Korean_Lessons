@@ -147,7 +147,8 @@ button {
 .tab-button,
 .tool-button,
 .segment,
-.icon-button {
+.icon-button,
+.audio-button {
   border: 1px solid var(--line);
   background: var(--surface);
   color: var(--ink);
@@ -172,7 +173,8 @@ button {
 .tab-button:hover,
 .tool-button:hover,
 .segment:hover,
-.icon-button:hover {
+.icon-button:hover,
+.audio-button:hover {
   transform: translateY(-1px);
   border-color: #b9c7d6;
 }
@@ -237,6 +239,19 @@ main {
   border-radius: 7px;
   font-size: 1.35rem;
   line-height: 1;
+}
+
+.audio-button {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  border-radius: 8px;
+  line-height: 1;
+}
+
+.audio-button span {
+  font-size: 1rem;
 }
 
 #day-output {
@@ -689,11 +704,14 @@ main {
 }
 
 .hangul-chip {
-  display: inline-grid;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   min-width: 54px;
-  min-height: 54px;
-  place-items: center;
+  min-height: 96px;
   padding: 6px;
+  gap: 4px;
   border-radius: 8px;
   background: var(--surface-strong);
 }
@@ -757,6 +775,11 @@ main {
   display: flex;
   align-items: center;
   gap: 12px;
+}
+
+.letter-head .audio-button {
+  margin-left: auto;
+  flex: 0 0 auto;
 }
 
 .letter-head strong {

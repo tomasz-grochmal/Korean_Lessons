@@ -15,7 +15,7 @@ Otwórz plik `index.html` w przeglądarce. Aplikacja działa bez instalowania za
 ## Zawartość
 
 - 3-dniowy start hangulu przed fiszkami.
-- Zakładka Hangul: litery, historie pamięciowe, wskazówki wymowy i ćwiczenia czytania.
+- Zakładka Hangul: litery, historie pamięciowe, wskazówki wymowy, ćwiczenia czytania i przyciski audio wymowy.
 - 80 praktycznych zwrotów w 4 tygodniach.
 - Stały format fiszek: sytuacja, koreański zapis, uproszczona wymowa, dosłowne znaczenie i naturalne znaczenie po polsku.
 - Rozwijane rozbicie sylab na fiszkach, np. `한 = ㅎ + ㅏ + ㄴ`.

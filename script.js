@@ -1453,6 +1453,46 @@ const HANGUL_LETTERS = [
   { char: "ㅄ", type: "końcówka złożona", sound: "p", story: "Pudełko ㅂ trzyma w środku syk ㅅ, ale na końcu słychać głównie p.", mouth: "Zamknij usta krótko, nie dopowiadaj sy.", example: "없 z 문제없어요" }
 ];
 
+const HANGUL_AUDIO = {
+  "ㄱ": "가",
+  "ㄲ": "까",
+  "ㄴ": "나",
+  "ㄷ": "다",
+  "ㄸ": "따",
+  "ㄹ": "라",
+  "ㅁ": "마",
+  "ㅂ": "바",
+  "ㅅ": "사",
+  "ㅆ": "싸",
+  "ㅇ": "아",
+  "ㅈ": "자",
+  "ㅉ": "짜",
+  "ㅊ": "차",
+  "ㅋ": "카",
+  "ㅌ": "타",
+  "ㅍ": "파",
+  "ㅎ": "하",
+  "ㅏ": "아",
+  "ㅐ": "애",
+  "ㅓ": "어",
+  "ㅔ": "에",
+  "ㅕ": "여",
+  "ㅖ": "예",
+  "ㅗ": "오",
+  "ㅘ": "와",
+  "ㅙ": "왜",
+  "ㅚ": "외",
+  "ㅛ": "요",
+  "ㅜ": "우",
+  "ㅝ": "워",
+  "ㅠ": "유",
+  "ㅡ": "으",
+  "ㅣ": "이",
+  "ㄶ": "괜찮아요",
+  "ㅀ": "잃었어요",
+  "ㅄ": "없어요"
+};
+
 const HANGUL_LESSONS = [
   {
     id: "hangul-1",
@@ -1512,6 +1552,7 @@ const COURSE_STEPS = [
 
 const phraseById = Object.fromEntries(PHRASES.map((phrase) => [phrase.id, phrase]));
 const hangulLetterByChar = Object.fromEntries(HANGUL_LETTERS.map((letter) => [letter.char, letter]));
+let koreanVoice = null;
 const savedStep = Number(localStorage.getItem("ko28-step"));
 const savedDay = Number(localStorage.getItem("ko28-day"));
 const initialStep = savedStep || (savedDay ? savedDay + HANGUL_LESSONS.length : 1);
@@ -1676,6 +1717,39 @@ function setMenuOpen(isOpen) {
   toggle.setAttribute("aria-label", isOpen ? "Zamknij menu" : "Otwórz menu");
 }
 
+function getKoreanVoice() {
+  if (typeof window === "undefined" || !window.speechSynthesis) return null;
+  if (koreanVoice) return koreanVoice;
+
+  koreanVoice = window.speechSynthesis
+    .getVoices()
+    .find((voice) => voice.lang.toLowerCase().startsWith("ko")) || null;
+  return koreanVoice;
+}
+
+function speakKorean(text) {
+  if (typeof window === "undefined" || !window.speechSynthesis || !text) return;
+
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = "ko-KR";
+  utterance.rate = 0.72;
+  utterance.pitch = 1;
+  const voice = getKoreanVoice();
+  if (voice) utterance.voice = voice;
+
+  window.speechSynthesis.cancel();
+  window.speechSynthesis.speak(utterance);
+}
+
+function audioButtonFor(letter) {
+  const audioText = HANGUL_AUDIO[letter.char] || letter.char;
+  return `
+    <button class="audio-button" type="button" data-speak-ko="${audioText}" aria-label="Odtwórz wymowę ${letter.char}" title="Odtwórz wymowę">
+      <span aria-hidden="true">🔊</span>
+    </button>
+  `;
+}
+
 function renderHangulLetterChip(char) {
   const letter = hangulLetterByChar[char];
   if (!letter) return "";
@@ -1683,6 +1757,7 @@ function renderHangulLetterChip(char) {
     <div class="hangul-chip">
       <strong>${letter.char}</strong>
       <span>${letter.sound}</span>
+      ${audioButtonFor(letter)}
     </div>
   `;
 }
@@ -1952,6 +2027,7 @@ function renderHangul() {
           <span>${letter.type}</span>
           <b>${letter.sound}</b>
         </div>
+        ${audioButtonFor(letter)}
       </div>
       <p><span>Historia</span>${letter.story}</p>
       <p><span>Usta</span>${letter.mouth}</p>
@@ -1961,6 +2037,13 @@ function renderHangul() {
 }
 
 function bindEvents() {
+  if (typeof window !== "undefined" && window.speechSynthesis) {
+    window.speechSynthesis.addEventListener("voiceschanged", () => {
+      koreanVoice = null;
+      getKoreanVoice();
+    });
+  }
+
   const menuToggle = qs("#menu-toggle");
   if (menuToggle) {
     menuToggle.addEventListener("click", () => {
@@ -2050,6 +2133,12 @@ function bindEvents() {
     if (choice.dataset.correct !== "true") {
       choice.classList.add("is-wrong");
     }
+  });
+
+  document.addEventListener("click", (event) => {
+    const audioButton = event.target.closest("[data-speak-ko]");
+    if (!audioButton) return;
+    speakKorean(audioButton.dataset.speakKo);
   });
 }
 
