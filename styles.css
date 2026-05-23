@@ -470,11 +470,24 @@ main {
 }
 
 .hangul {
-  margin: 0 0 8px;
+  margin: 0;
   font-size: clamp(1.65rem, 4vw, 2.35rem);
   font-weight: 900;
   line-height: 1.18;
   word-break: keep-all;
+}
+
+.phrase-hangul-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: start;
+  margin-bottom: 8px;
+}
+
+.phrase-audio {
+  margin-top: 2px;
+  flex: 0 0 auto;
 }
 
 .pronunciation {

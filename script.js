@@ -1674,6 +1674,14 @@ function renderSyllableBreakdown(phrase) {
   `;
 }
 
+function phraseAudioButton(phrase) {
+  return `
+    <button class="audio-button phrase-audio" type="button" data-speak-ko="${phrase.korean}" aria-label="Odtwórz wymowę: ${phrase.polish}" title="Odtwórz wymowę zdania">
+      <span aria-hidden="true">🔊</span>
+    </button>
+  `;
+}
+
 function phraseCard(phrase, compact = false) {
   const scene = SCENES[phrase.scene];
   const memory = chunkHangul(phrase.korean)
@@ -1688,7 +1696,10 @@ function phraseCard(phrase, compact = false) {
       </div>
       <div class="memory-cue" aria-hidden="true">${memory}</div>
       <p class="eyebrow">${phrase.situation}</p>
-      <h3 class="hangul">${phrase.korean}</h3>
+      <div class="phrase-hangul-row">
+        <h3 class="hangul">${phrase.korean}</h3>
+        ${phraseAudioButton(phrase)}
+      </div>
       <p class="pronunciation">${phrase.pronunciation}</p>
       <p class="natural"><span>Naturalnie</span><strong>${phrase.polish}</strong></p>
       <p class="literal"><span>Dosłownie</span><br>${phrase.literal}</p>
