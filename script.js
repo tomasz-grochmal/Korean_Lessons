@@ -1666,6 +1666,16 @@ function setView(viewName) {
   });
 }
 
+function setMenuOpen(isOpen) {
+  const toggle = qs("#menu-toggle");
+  const tabs = qs("#course-tabs");
+  if (!toggle || !tabs) return;
+
+  tabs.classList.toggle("is-open", isOpen);
+  toggle.setAttribute("aria-expanded", String(isOpen));
+  toggle.setAttribute("aria-label", isOpen ? "Zamknij menu" : "Otwórz menu");
+}
+
 function renderHangulLetterChip(char) {
   const letter = hangulLetterByChar[char];
   if (!letter) return "";
@@ -1951,9 +1961,33 @@ function renderHangul() {
 }
 
 function bindEvents() {
+  const menuToggle = qs("#menu-toggle");
+  if (menuToggle) {
+    menuToggle.addEventListener("click", () => {
+      setMenuOpen(menuToggle.getAttribute("aria-expanded") !== "true");
+    });
+  }
+
   qsa(".tab-button").forEach((button) => {
-    button.addEventListener("click", () => setView(button.dataset.viewTarget));
+    button.addEventListener("click", () => {
+      setView(button.dataset.viewTarget);
+      if (typeof window !== "undefined" && window.matchMedia("(max-width: 620px)").matches) {
+        setMenuOpen(false);
+      }
+    });
   });
+
+  if (typeof window !== "undefined") {
+    window.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") setMenuOpen(false);
+    });
+
+    window.addEventListener("resize", () => {
+      if (!window.matchMedia("(max-width: 620px)").matches) {
+        setMenuOpen(false);
+      }
+    });
+  }
 
   qs("#prev-day").addEventListener("click", () => {
     state.step = clampStep(state.step - 1);

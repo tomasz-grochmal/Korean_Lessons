@@ -109,6 +109,41 @@ button {
   gap: 8px;
 }
 
+.menu-toggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--ink);
+}
+
+.menu-toggle span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  transition: transform 160ms ease, opacity 160ms ease;
+}
+
+.menu-toggle[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.menu-toggle[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
 .tab-button,
 .tool-button,
 .segment,
@@ -1076,11 +1111,16 @@ main {
   }
 
   .topbar {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 12px;
     padding-inline: 14px;
   }
 
   .brand {
-    align-items: flex-start;
+    min-width: 0;
+    align-items: center;
   }
 
   .brand-mark {
@@ -1088,9 +1128,28 @@ main {
     height: 46px;
   }
 
+  .brand p {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  .tabs {
+    display: none;
+    grid-column: 1 / -1;
+    width: 100%;
+    padding-top: 4px;
+  }
+
+  .tabs.is-open {
+    display: flex;
+  }
+
   .tab-button {
-    flex: 1 1 42%;
-    justify-content: center;
+    flex: 1 1 100%;
+    justify-content: flex-start;
   }
 
   .cards-grid {
